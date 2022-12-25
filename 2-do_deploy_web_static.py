@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 '''fabric script for deployment'''
 
+
 from fabric.api import put, run, env
 from os.path import exists
-
-
 env.hosts = ['54.152.60.141', '100.25.183.111']
+
 
 def do_deploy(archive_path):
     """distributes an archive to the web servers"""
@@ -24,5 +24,5 @@ def do_deploy(archive_path):
         run('rm -rf /data/web_static/current')
         run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
         return True
-    except:
+    except Exception:
         return False
